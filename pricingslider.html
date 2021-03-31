@@ -1,275 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pricing-slider-styles.css">
+  <title>Document</title>
 </head>
-<style>
-    .num-users{
-        display: inline-block;
 
-    }
-    .num-users-text{
-        display: inline-block
-    }
-    #biz-price, #pro-price, #beginner-price{
-        display: block;
-    }
-    .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;  
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%; 
-  background: #3d0764;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #3d0764;
-  cursor: pointer;
-}
-
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.toggle-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #f4ddea;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.toggle-slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .toggle-slider {
-  background-color: #580083;
-}
-
-input:focus + .toggle-slider {
-  box-shadow: 0 0 1px #580083;
-}
-
-input:checked + .toggle-slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.toggle-slider.round {
-  border-radius: 34px;
-}
-
-.toggle-slider.round:before {
-  border-radius: 50%;
-}
-
-/*Display the text inline with the toggle*/
-
-.price-toggle p{
-    display: inline-block;
-    padding-left: 50px;
-    padding-right: 50px;
-    font-size: 28px;
-    color: #ffffff;
-}
-
-
-/*Do not copy these styles*/
-body{
-    padding-left: 10%;
-    padding-right: 10%;
-}
-span{
-    font-size: 28px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    line-height: 2em;
-}
-
-body .price-toggle p{
-    color: red;
-}
-.monthly-price, .annual-price{
-    color: black;
-}
-</style>
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-
-        jQuery( document ).ready(function($) {
-            
-        var slider = document.getElementById("myRange"),
-         numUsers = document.getElementsByClassName("num-users"),
-         toggle = document.getElementById("toggle"),
-         //Monthly pricing
-         beginnerPrice = document.getElementById("beginner-price"),
-         bizPrice = document.getElementById("biz-price"),
-         proPrice = document.getElementById("pro-price"),
-         //Yearly pricing
-         beginnerPriceAnnual = document.getElementById("beginner-price-annual"),
-         bizPriceAnnual = document.getElementById("biz-price-annual"),
-         proPriceAnnual = document.getElementById("pro-price-annual")
-        
-         montlyPrices = $(".monthly-price"),
-         annualPrices = $(".annual-price");
-
-         annualPrices.hide();
-
-        $(toggle).click(function(){
-            if(toggle.checked == true){
-                //Hide monthy pricing show annual pricing
-                montlyPrices.toggle();
-                annualPrices.toggle();
-               
-            }else{
-                montlyPrices.toggle();
-                annualPrices.toggle();
-                
-            }
-        });
-        
-       
-        
-        // Update the current slider value (each time you drag the slider handle)
-        slider.oninput = function() {
-
-            //Get the value of the user and convert it to a number
-            var userVal = parseInt(this.value);
-            //Do math on the user value and cost of the package
-            var begPriceVal = userVal + 10;
-            var bizPriceVal = userVal + 20;
-            var proPriceVal = userVal + 30;
-
-            var annualBegPriceVal = userVal + 10 * 12,
-            annualbegPriceDiscounted = annualBegPriceVal- (annualBegPriceVal * .20);
-            var annualBizPriceVal = userVal + 20 * 12,
-            annualBizPriceDiscounted = annualBizPriceVal - (annualBizPriceVal * .20);
-            var annualProPriceVal = userVal + 30 * 12,
-            annualProPriceDiscounted = annualProPriceVal - (annualProPriceVal * .20);
-
-            beginnerPrice.innerHTML = "$"  + begPriceVal.toFixed(2) + " / m";
-            bizPrice.innerHTML = "$" + bizPriceVal.toFixed(2) + " / m";
-            proPrice.innerHTML = "$" + proPriceVal.toFixed(2) +  " / m";
-
-            beginnerPriceAnnual.innerHTML = "$" + annualbegPriceDiscounted.toFixed(2) +  " / y";
-            bizPriceAnnual.innerHTML = "$" + annualBizPriceDiscounted.toFixed(2) +  " / y";
-            proPriceAnnual.innerHTML = "$" + annualProPriceDiscounted.toFixed(2) + " / y";
-
-
-            //Show hide pricing plans if num user exceeds x
-            if(userVal >= 21){
-              console.log("Disable beginner plan");
-            }else{
-              console.log("Turn on the beginner plan");
-            } 
-            if(userVal >=51){
-              console.log("disable Biz package");
-            }else{
-              console.log("Turn on the Biz plan");
-            }
-
-            [].slice.call( numUsers ).forEach(function ( numUsers ) {
-                //numUsers.innerHTML = items.innerHTML;
-                numUsers.innerHTML = slider.value;
-            });
-        }
-            
-        });    
-        </script>
-
-<div class="price-toggle"><p>Monthly</p>  
+  
+  <div class="price-toggle">
+    <p>Monthly</p>
 
     <!-- Rounded switch -->
     <label class="switch">
       <input type="checkbox" id="toggle">
       <span class="toggle-slider round"></span>
     </label>
-    
-    <p>Anunally</p>
-    </div>
 
-    
-<div class="slidecontainer">
+    <p>Anunally</p>
+  </div>
+
+
+  <div class="slidecontainer">
     <input type="range" min="1" max="100" value="5" class="slider" id="myRange">
   </div>
 
   <div class="monthly-price">
-      <span id="beginner-price">$11.00</span>
-    </div>
-    <div class="annual-price">
-        <span id="beginner-price-annual">$121.00</span>
-    </div>
-   <div class="num-users-text">Number of Users:</div><div class="num-users"></div>
-  
+    <span id="beginner-price">$11.00</span>
+  </div>
+  <div class="annual-price">
+    <span id="beginner-price-annual">$121.00</span>
+  </div>
+  <div class="num-users-text">Number of Users:</div>
+  <div class="num-users"></div>
+
 
   <div class="monthly-price">
     <span id="biz-price">$21.00</span>
   </div>
   <div class="annual-price">
-      <span id="biz-price-annual">$241.00</span>
+    <span id="biz-price-annual">$241.00</span>
   </div>
-  <div class="num-users-text">Number of Users:</div><div class="num-users"></div>
- 
+  <div class="num-users-text">Number of Users:</div>
+  <div class="num-users"></div>
+
   <div class="monthly-price">
     <span id="pro-price">$31.00</span>
   </div>
   <div class="annual-price">
-      <span id="pro-price-annual">$361.00</span>
+    <span id="pro-price-annual">$361.00</span>
   </div>
- 
-  <div class="num-users-text">Number of Users:</div><div class="num-users"></div>
+
+  <div class="num-users-text">Number of Users:</div>
+  <div class="num-users"></div>
 
 
-    <footer>
-        
-    </footer>
+  <footer>
+
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="pricing-slider-scripts.js"></script>
 </body>
+
 </html>
