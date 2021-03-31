@@ -1,3 +1,12 @@
+    :root{
+        --black: #000000;
+        --white: #ffffff;
+        --purple: #3d0764;
+        --off-white: #d3d3d3;
+
+    }
+    
+    
     .num-users{
         display: inline-block;
 
@@ -8,12 +17,12 @@
     #biz-price, #pro-price, #beginner-price{
         display: block;
     }
-    .slider {
+.slider {
   -webkit-appearance: none;
   width: 100%;
   height: 15px;
   border-radius: 5px;  
-  background: #d3d3d3;
+  background: var(--off-white);
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -26,7 +35,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background: #3d0764;
+  background: var(--purple);
   cursor: pointer;
 }
 
@@ -34,7 +43,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #3d0764;
+  background: var(--purple);
   cursor: pointer;
 }
 
@@ -73,17 +82,17 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--white);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .toggle-slider {
-  background-color: #580083;
+  background-color: var(--purple);
 }
 
 input:focus + .toggle-slider {
-  box-shadow: 0 0 1px #580083;
+  box-shadow: 0 0 1px var(--purple);
 }
 
 input:checked + .toggle-slider:before {
@@ -108,7 +117,7 @@ input:checked + .toggle-slider:before {
     padding-left: 50px;
     padding-right: 50px;
     font-size: 28px;
-    color: #ffffff;
+    color: var(--white);
 }
 
 
@@ -125,8 +134,8 @@ span{
 }
 
 body .price-toggle p{
-    color: red;
+    color: var(--purple);
 }
 .monthly-price, .annual-price{
-    color: black;
+    color: var(--black);
 }
